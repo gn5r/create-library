@@ -1,0 +1,52 @@
+{
+  "name": "@gn5r/create-library",
+  "version": "0.1.0-beta.0",
+  "main": "dist/index.cjs",
+  "type": "module",
+  "author": {
+    "name": "shangyuan.tuolang"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gn5r/create-library.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "bin": {
+    "create-library": "./dist/index.cjs"
+  },
+  "files": [
+    "dist/index.cjs",
+    "template"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "lint": "eslint --ext .ts src",
+    "lint:fix": "prettier --write src/**/*.ts",
+    "prepare": "husky install",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "kolorist": "^1.8.0",
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@types/lodash-es": "^4.17.7",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^20.3.1",
+    "@types/prompts": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
+    "esbuild": "^0.18.4",
+    "eslint": "^8.43.0",
+    "husky": "^8.0.3",
+    "lodash-es": "^4.17.21",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
+  }
+}
