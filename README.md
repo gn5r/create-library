@@ -2,7 +2,7 @@
 
 ## Usage
 
-`yarn create library ${targetDir}`
+`yarn create @gn5r/library ${targetDir}`
 
 ## License
 
