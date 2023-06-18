@@ -34,6 +34,11 @@ async function run() {
     isOverwrite,
     author,
     version,
+    type,
+    mainScript,
+    lisence,
+    repositoryType,
+    repositoryUrl,
     runGitInit,
     usePackageManager,
   } = await initPrompts(context);
@@ -46,17 +51,28 @@ async function run() {
     mkdirSync(root);
   }
 
+  let packageJson: any = {
+    name: packageName,
+    version: version,
+    author: author,
+  };
+
+  // write type into package.json when type is not null
+  if (type) packageJson.type = type;
+
+  packageJson = {
+    ...packageJson,
+    main: mainScript,
+    lisence: lisence,
+    repository: {
+      type: repositoryType,
+      url: repositoryUrl,
+    },
+  };
+
   writeFileSync(
     resolve(root, "package.json"),
-    JSON.stringify(
-      {
-        name: packageName,
-        version: version,
-        author: author,
-      },
-      null,
-      2
-    )
+    JSON.stringify(packageJson, null, 2)
   );
 
   const templatePath = resolve(__dirname, "../template");

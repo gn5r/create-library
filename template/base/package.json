@@ -1,16 +1,10 @@
 {
-  "type": "module",
-  "license": "",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
   "bin": {},
   "files": [],
   "scripts": {
     "build": "",
-    "lint": "",
-    "lint:fix": "",
+    "lint": "eslint --ext .ts src",
+    "lint:fix": "prettier --write src/**/*.ts",
     "prepare": "husky install"
   },
   "devDependencies": {
