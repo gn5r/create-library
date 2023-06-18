@@ -2,4 +2,4 @@
 
 npm config set //npm.pkg.github.com/:_authToken "${NODE_AUTH_TOKEN:?}"
 npm whoami
-npm publish --tag "$(node ./scripts/parse-dist-tag.js)"
+npm publish --tag "$(node ./scripts/parse-dist-tag.cjs)"
