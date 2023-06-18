@@ -32,8 +32,13 @@ type Context = {
   isOverwrite?: boolean;
   author?: string;
   version?: string;
-  useLerna?: boolean;
+  type?: string;
+  mainScript?: string;
+  lisence?: string;
+  repositoryType?: string;
+  repositoryUrl?: string;
   runGitInit?: boolean;
+  // useLerna?: boolean;
   usePackageManager?: "npm" | "yarn";
 };
 
@@ -46,7 +51,10 @@ async function initPrompts(context: Context) {
   // - Is Overwrite?
   // - Author:
   // - Version:
-  // - Use lerna?
+  // - main script:
+  // - License:
+  // - Repository type:
+  // - Repository url:
   // - Run Git Init?
   // - Install dependencies with yarn or npm?
   const answer = await prompts(
@@ -79,13 +87,56 @@ async function initPrompts(context: Context) {
         name: "author",
         type: "text",
         message: "Author:",
-        initial: "gn5r",
+        initial: "",
       },
       {
         name: "version",
         type: "text",
         message: "Version:",
         initial: "0.1.0",
+      },
+      {
+        name: "type",
+        type: "select",
+        message: "Type:",
+        initial: 0,
+        choices: [
+          { title: "none", value: null },
+          { title: "module", value: "module" },
+          { title: "commonjs", value: "commonjs" },
+        ],
+      },
+      {
+        name: "mainScript",
+        type: "text",
+        message: "main script:",
+        initial: "dist/index.js",
+      },
+      {
+        name: "lisence",
+        type: "text",
+        message: "License:",
+        initial: "MIT",
+      },
+      {
+        name: "repositoryType",
+        type: "text",
+        message: "Repository type:",
+        initial: "git",
+      },
+      {
+        name: "repositoryUrl",
+        type: "text",
+        message: "Repository url:",
+        initial: "",
+      },
+      {
+        name: "runGitInit",
+        type: "toggle",
+        message: "Run 'git init' command?",
+        active: "Yes",
+        inactive: "No",
+        initial: true,
       },
       // {
       //   name: "useLerna",
@@ -95,14 +146,6 @@ async function initPrompts(context: Context) {
       //   inactive: "No",
       //   initial: false,
       // },
-      {
-        name: "runGitInit",
-        type: "toggle",
-        message: "Run 'git init' command?",
-        active: "Yes",
-        inactive: "No",
-        initial: true,
-      },
       {
         name: "usePackageManager",
         type: "select",
